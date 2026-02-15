@@ -1,36 +1,47 @@
-import {App, PluginSettingTab, Setting} from "obsidian";
-import MyPlugin from "./main";
+import ExamplePlugin from './main';
+import { App, Notice, PluginSettingTab, Setting } from 'obsidian';
 
-export interface MyPluginSettings {
-	mySetting: string;
-}
+export class ExampleSettingTab extends PluginSettingTab {
+  plugin: ExamplePlugin;
 
-export const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: 'default'
-}
+  constructor(app: App, plugin: ExamplePlugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
 
-export class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+  display(): void {
+    let { containerEl } = this;
 
-	constructor(app: App, plugin: MyPlugin) {
-		super(app, plugin);
-		this.plugin = plugin;
-	}
-
-	display(): void {
-		const {containerEl} = this;
-
-		containerEl.empty();
-
-		new Setting(containerEl)
-			.setName('Settings #1')
-			.setDesc('It\'s a secret')
-			.addText(text => text
-				.setPlaceholder('Enter your secret')
-				.setValue(this.plugin.settings.mySetting)
-				.onChange(async (value) => {
-					this.plugin.settings.mySetting = value;
-					await this.plugin.saveSettings();
-				}));
-	}
+    containerEl.empty();
+    const dateDesc = document.createDocumentFragment();  
+    dateDesc.appendText('For a list of all available tokens, see the ');  
+    dateDesc.createEl('a', {  
+        text: 'format reference',  
+        attr: { href: 'https://momentjs.com/docs/#/displaying/format/', target: '_blank' }  
+    });  
+    dateDesc.createEl('br');  
+    dateDesc.appendText('Your current syntax looks like this: ');  
+    const dateSampleEl = dateDesc.createEl('b', 'u-pop');  
+    new Setting(containerEl)  
+        .setName('Date format')  
+        .setDesc(dateDesc)  
+        .addMomentFormat(momentFormat => momentFormat  
+          .setValue(this.plugin.settings.dateFormat)  
+          .setSampleEl(dateSampleEl)  
+          .setDefaultFormat('MMMM dd, yyyy')  
+          .onChange(async (value) => {  
+              this.plugin.settings.dateFormat = value;  
+              await this.plugin.saveSettings();  
+          }));
+    new Setting(containerEl)  
+        .setName('Toggle')  
+        .addToggle(toggle => toggle  
+          .setValue(this.plugin.settings.localServer)  
+          .onChange(async (value) => {  
+              this.plugin.settings.localServer = value;  
+              await this.plugin.saveSettings();  
+              this.display();
+          })
+        );
+  }
 }
