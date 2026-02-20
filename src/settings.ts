@@ -1,5 +1,5 @@
 import ExamplePlugin from './main';
-import { App, Notice, PluginSettingTab, Setting } from 'obsidian';
+import { App, PluginSettingTab, Setting } from 'obsidian';
 
 export class ExampleSettingTab extends PluginSettingTab {
   plugin: ExamplePlugin;
@@ -13,35 +13,19 @@ export class ExampleSettingTab extends PluginSettingTab {
     let { containerEl } = this;
 
     containerEl.empty();
-    const dateDesc = document.createDocumentFragment();  
-    dateDesc.appendText('For a list of all available tokens, see the ');  
-    dateDesc.createEl('a', {  
-        text: 'format reference',  
-        attr: { href: 'https://momentjs.com/docs/#/displaying/format/', target: '_blank' }  
-    });  
-    dateDesc.createEl('br');  
-    dateDesc.appendText('Your current syntax looks like this: ');  
-    const dateSampleEl = dateDesc.createEl('b', 'u-pop');  
+
     new Setting(containerEl)  
-        .setName('Date format')  
-        .setDesc(dateDesc)  
-        .addMomentFormat(momentFormat => momentFormat  
-          .setValue(this.plugin.settings.dateFormat)  
-          .setSampleEl(dateSampleEl)  
-          .setDefaultFormat('MMMM dd, yyyy')  
-          .onChange(async (value) => {  
-              this.plugin.settings.dateFormat = value;  
-              await this.plugin.saveSettings();  
-          }));
-    new Setting(containerEl)  
-        .setName('Toggle')  
-        .addToggle(toggle => toggle  
-          .setValue(this.plugin.settings.localServer)  
-          .onChange(async (value) => {  
-              this.plugin.settings.localServer = value;  
-              await this.plugin.saveSettings();  
-              this.display();
-          })
+        .setName('Dropdown')  
+        .addDropdown((dropdown) =>  
+          dropdown  
+              .addOption('1', 'Option 1')  
+              .addOption('2', 'Option 2')  
+              .addOption('3', 'Option 3')  
+              .setValue(this.plugin.settings.mySetting)  
+              .onChange(async (value) => {  
+                this.plugin.settings.mySetting = value;  
+                await this.plugin.saveSettings();  
+              })  
         );
   }
 }
