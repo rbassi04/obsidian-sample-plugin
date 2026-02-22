@@ -1,6 +1,6 @@
 {
-	"id": "hello-wrld",
-	"name": "HELLOW WORLD",
+	"id": "quick-notes",
+	"name": "Quick Notes",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "Demonstrates some of the capabilities of the Obsidian API.",

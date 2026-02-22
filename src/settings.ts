@@ -14,18 +14,26 @@ export class ExampleSettingTab extends PluginSettingTab {
 
     containerEl.empty();
 
-    new Setting(containerEl)  
-        .setName('Dropdown')  
-        .addDropdown((dropdown) =>  
-          dropdown  
-              .addOption('1', 'Option 1')  
-              .addOption('2', 'Option 2')  
-              .addOption('3', 'Option 3')  
-              .setValue(this.plugin.settings.mySetting)  
-              .onChange(async (value) => {  
-                this.plugin.settings.mySetting = value;  
-                await this.plugin.saveSettings();  
-              })  
-        );
+    new Setting(containerEl)
+      .setName('Persistent After Deleting Note')  
+      .setDesc('Popup stays after you delete a note')
+      .addToggle(toggle => toggle
+        .setValue(this.plugin.settings.persistentOnDelete)
+        .onChange(e => {
+          this.plugin.settings.persistentOnDelete = e
+          this.plugin.saveSettings()
+        })
+      )
+      
+    new Setting(containerEl)
+      .setName('Persistent After Inserting Note')  
+      .setDesc('Popup stays after you insert a note')
+      .addToggle(toggle => toggle
+        .setValue(this.plugin.settings.persistentOnDelete)
+        .onChange(e => {
+          this.plugin.settings.persistentOnInsert = e
+          this.plugin.saveSettings()
+        })
+      )
   }
 }
