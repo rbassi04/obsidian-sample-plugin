@@ -9,18 +9,18 @@ Inspired by this reddit post: https://www.reddit.com/r/ObsidianMD/comments/186n3
 
 ---
 
-## ✨ Features
+## Features
 
-- ⚡ Open a popup via command palette  
-- 📝 Instantly type and save notes from any page  
-- ⌨️ 100% Keyboard-first navigation (Arrow keys + Enter)  
-- 📋 One-click copy to clipboard  
-- 📤 Export notes to Markdown  
-- 💾 Persistent storage using Obsidian's built-in data API  
+- Open a popup via command palette  
+- Instantly type and save notes from any page  
+- 100% Keyboard-first navigation (Arrow keys + Enter)  
+- One-click copy to clipboard  
+- Export notes to Markdown  
+- Persistent storage using Obsidian's built-in data API  
 
 ---
 
-## 🚀 Why This Plugin?
+## Why This Plugin?
 
 When writing in Obsidian, switching context to create a separate note can break focus.
 
@@ -35,7 +35,7 @@ This plugin was created based on requests from users in the Obsidian community.
 
 ---
 
-## 📦 Manual Installation
+## Manual Installation
 
 1. Download the latest release
 2. Extract into your vault:
@@ -47,7 +47,7 @@ This plugin was created based on requests from users in the Obsidian community.
 
 ---
 
-## 🛠 Usage
+## Usage
 
 1. Set the plugin's Hotkey
 2. Run the Hotkey
@@ -58,7 +58,7 @@ This plugin was created based on requests from users in the Obsidian community.
 
 ---
 
-## ⚙️ Settings
+## Settings
 
 - **Persistent on Insert**  
   Keep popup open after inserting a note.
@@ -68,7 +68,7 @@ This plugin was created based on requests from users in the Obsidian community.
 
 ---
 
-## 📤 Export Format
+## Export Format
 
 Notes are exported in Markdown format:
 
